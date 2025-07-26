@@ -1,0 +1,17 @@
+@for (element of elements(); track $index) {
+    @if (isTextElement(element)) {
+        <app-text-element [text]="element.text"/>
+    }
+    @else if (isComputedElement(element)) {
+        <app-computed-element [value]="element.value"/>
+    }
+    @else if (isFormattedElement(element)) {
+        <app-formatted-container>
+            <app-element-tree [elements]="element.subtree"/>
+            <button>&plus;</button>
+        </app-formatted-container>
+    }
+    @else {
+        <span>{{ element.type }}</span>
+    }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-text-element',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './text-element.scss'
 })
 export class TextElement {
-
+  text = input<string>('')
 }
