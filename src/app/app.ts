@@ -1,12 +1,32 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TextElement } from "./text-element/text-element";
+import { DateElement } from "./date-element/date-element";
+
+enum ElementType {
+    Text = 'text',
+    Date = 'date'
+}
+
+interface PromptElement {
+    type: ElementType
+}
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+    selector: 'app-root',
+    templateUrl: './app.html',
+    styleUrl: './app.scss',
+    imports: [TextElement, DateElement]
 })
 export class App {
-  protected readonly title = signal('prompt-engineer');
+    elements = signal<PromptElement[]>([
+        {
+            type: ElementType.Text
+        },
+        {
+            type: ElementType.Date
+        },
+        {
+            type: ElementType.Text
+        }
+    ])
 }
