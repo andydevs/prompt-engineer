@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { ComputedValue } from '../../domain/prompt-element';
+import { ComputedValue } from '../../../domain/prompt-element';
 
 @Component({
   selector: 'app-computed-element',

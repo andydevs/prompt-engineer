@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { FormattedElement } from "./formatted-element/formatted-element";
+import { FormattedElement } from "./designer/formatted-element/formatted-element";
 import { PromptElement, ElementType, ComputedValue, promptExample, promptPS1, Formatted } from "../domain/prompt-element";
 
 @Component({

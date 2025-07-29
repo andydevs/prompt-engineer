@@ -1,5 +1,5 @@
 import { booleanAttribute, Component, input } from '@angular/core';
-import { Formatted, isComputedElement, isFormattedElement, isTextElement } from '../../domain/prompt-element';
+import { Formatted, isComputedElement, isFormattedElement, isTextElement } from '../../../domain/prompt-element';
 import { TextElement } from '../text-element/text-element';
 import { ComputedElement } from '../computed-element/computed-element';
 
