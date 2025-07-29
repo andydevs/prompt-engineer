@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { ElementType, PromptElement } from '../prompt-element';
+import { create, ElementType, PromptElement } from '../prompt-element';
 import { AddElementButton } from '../add-element-button/add-element-button';
 
 @Component({
@@ -11,8 +11,9 @@ import { AddElementButton } from '../add-element-button/add-element-button';
 export class Designer {
   elements = signal<PromptElement[]>([])
 
-  addElement(elem: PromptElement) {
-    this.elements.update(elems => [...elems, elem])
+  addElement(event: { type: ElementType }) {
+    let element = create(event.type)
+    this.elements.update(elems => [...elems, element])
   }
 
   deleteElement(index: number) {
