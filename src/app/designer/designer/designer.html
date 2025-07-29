@@ -1,0 +1,11 @@
+<span class="prompt-designer">
+    <span class="prompt-elements">
+        @for (element of elements(); track $index) {
+            <span>
+                <button (click)="deleteElement($index)">&cross;</button>
+                {{ element.type }}
+            </span>
+        }
+    </span>
+    <app-add-element-button (addElement)="addElement($event)"/>
+</span>

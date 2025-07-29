@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComputedElement } from './computed-element';
+import { Designer } from './designer';
 
-describe('ComputedElement', () => {
-  let component: ComputedElement;
-  let fixture: ComponentFixture<ComputedElement>;
+describe('Designer', () => {
+  let component: Designer;
+  let fixture: ComponentFixture<Designer>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ComputedElement]
+      imports: [Designer]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ComputedElement);
+    fixture = TestBed.createComponent(Designer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

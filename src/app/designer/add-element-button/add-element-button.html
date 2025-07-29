@@ -1,0 +1,14 @@
+<span class="add-element-container">
+    @if (open()) {
+        <ul class="add-list">
+            @for (type of types; track $index) {
+                <li>
+                    <button (click)="selectElement(type)">{{ type }}</button>
+                </li>
+            }
+        </ul>
+    }
+    @else {
+        <button class="add-button" (click)="openMenu()">&plus;</button>
+    }
+</span>
