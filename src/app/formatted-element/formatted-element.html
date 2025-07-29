@@ -1,0 +1,24 @@
+<span class="element-container">
+    @if (!root()) {
+        <button class="element-remove">&cross;</button>
+    }
+    <span class="element-content formatted-container">
+        <span class="formatted-content">
+            @for (element of formatted().subtree; track $index) {
+                @if (isTextElement(element)) {
+                    <app-text-element [text]="element.text"/>
+                }
+                @else if (isComputedElement(element)) {
+                    <app-computed-element [value]="element.value"/>
+                }
+                @else if (isFormattedElement(element)) {
+                    <app-formatted-element [formatted]="element"/>
+                }
+                @else {
+                    <span>Unknown type: {{ element.type }}</span>
+                }
+            }
+        </span>
+        <button>&plus;</button>
+    </span>
+</span>

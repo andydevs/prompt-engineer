@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormattedContainer } from './formatted-container';
+import { FormattedElement } from './formatted-element';
 
 describe('FormattedContainer', () => {
-  let component: FormattedContainer;
-  let fixture: ComponentFixture<FormattedContainer>;
+  let component: FormattedElement;
+  let fixture: ComponentFixture<FormattedElement>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormattedContainer]
+      imports: [FormattedElement]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormattedContainer);
+    fixture = TestBed.createComponent(FormattedElement);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
