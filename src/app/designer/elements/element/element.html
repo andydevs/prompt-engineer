@@ -1,0 +1,15 @@
+<span class="designer-element">
+    <button (click)="deleteSelf()" class="designer-element-delete">&cross;</button>
+    <span class="designer-element-content">
+        @let elem = element();
+        @if(isText(elem)) {
+            <app-designer-text-element
+                (update)="updateSelf($event)"
+                [text]="elem.text"/>
+        }
+        <!-- Should'nt happen -->
+        @else {
+            <span class="designer-element-unknown">{{ element().type }}</span>
+        }
+    </span>
+</span>
