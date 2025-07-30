@@ -9,12 +9,26 @@ export enum ComputedValue {
     User = 'User',
     Host = 'Host',
     Directory = 'Directory',
+    Time = 'Time',
+    PromptEnd = 'PromptEnd',
 }
 
-const computedPreviews: { [key in ComputedValue]: string } = {
+type ComputedMap = { [key in ComputedValue]: string };
+
+const computedPreviews: ComputedMap = {
     [ComputedValue.User]: 'andy',
     [ComputedValue.Host]: 'supercomputer',
     [ComputedValue.Directory]: '~/workspace/super-task',
+    [ComputedValue.Time]: '4:23 PM',
+    [ComputedValue.PromptEnd]: '$',
+};
+
+const computedPS1: ComputedMap = {
+    [ComputedValue.User]: '\\u',
+    [ComputedValue.Host]: '\\h',
+    [ComputedValue.Directory]: '\\w',
+    [ComputedValue.Time]: '\\@',
+    [ComputedValue.PromptEnd]: '\\$',
 };
 
 export enum FormatColor {
@@ -28,10 +42,29 @@ export enum FormatColor {
     White = 'White',
 }
 
+type FormatColorValueMap = { [key in FormatColor]: number };
+const formatColorValue: FormatColorValueMap = {
+    [FormatColor.Black]: 0,
+    [FormatColor.Red]: 1,
+    [FormatColor.Green]: 2,
+    [FormatColor.Yellow]: 3,
+    [FormatColor.Blue]: 4,
+    [FormatColor.Magenta]: 5,
+    [FormatColor.Cyan]: 6,
+    [FormatColor.White]: 7,
+};
+
 export enum FormatIntensity {
     Dim = 'Dim',
     Bright = 'Bright',
 }
+
+type FormatIntensityMap = { [key in FormatIntensity]: number };
+
+const formatFGIntensity: FormatIntensityMap = {
+    [FormatIntensity.Dim]: 30,
+    [FormatIntensity.Bright]: 90,
+};
 
 export interface FormatData {
     foreground: {
@@ -117,7 +150,9 @@ export function generatePreviewElementText(element: PromptElement): string {
     }
 }
 
-export function generatePreviewElements(elements: PromptElement[]) {
+export function generatePreviewElements(
+    elements: PromptElement[],
+): PreviewElement[] {
     let lastFormat = undefined;
     let previewElements: PreviewElement[] = [];
     for (const element of elements) {
@@ -139,13 +174,21 @@ export function generatePreviewElements(elements: PromptElement[]) {
     return previewElements;
 }
 
-export function generatePreview(elements: PromptElement[]): string {
+export function generatePS1(elements: PromptElement[]): string {
     return elements
-        .map((element) => {
-            if (isText(element)) {
-                return element.text;
-            } else if (isComputed(element)) {
-                return computedPreviews[element.value];
+        .map((elem) => {
+            if (isText(elem)) {
+                return elem.text;
+            } else if (isComputed(elem)) {
+                return computedPS1[elem.value];
+            } else if (isReset(elem)) {
+                return '\\e[0m';
+            } else if (isFormat(elem)) {
+                let { intensity, color } = elem.format.foreground;
+                let fgIntensity = formatFGIntensity[intensity];
+                let fgColor = formatColorValue[color];
+                let fgCode = fgIntensity + fgColor;
+                return `\\e[${fgCode}m`;
             } else {
                 return '';
             }
