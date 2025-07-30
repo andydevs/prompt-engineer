@@ -1,13 +1,24 @@
 <span class="designer-format-element-container">
     <app-popup [open]="open()">
         <div class="designer-format-element-config">
-            <div>
-                Param:
-                <input
-                    type="checkbox"
-                    [ngModel]="format().param"
-                    (ngModelChange)="updateParam($event)"
-                />
+            <div class="designer-format-element-config-group">
+                Foreground:
+                <select
+                    [ngModel]="format().foreground.intensity"
+                    (ngModelChange)="updateFGIntensity($event)"
+                >
+                    @for (intensity of intensities; track intensity) {
+                        <option [value]="intensity">{{ intensity }}</option>
+                    }
+                </select>
+                <select
+                    [ngModel]="format().foreground.color"
+                    (ngModelChange)="updateFGColor($event)"
+                >
+                    @for (color of colors; track color) {
+                        <option [value]="color">{{ color }}</option>
+                    }
+                </select>
             </div>
         </div>
     </app-popup>

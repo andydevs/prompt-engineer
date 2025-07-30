@@ -1,5 +1,8 @@
 import { Component, computed, input } from '@angular/core';
-import { generatePreview, PromptElement } from '../../domain/prompt-element';
+import {
+    generatePreviewElements,
+    PromptElement,
+} from '../../domain/prompt-element';
 
 @Component({
     selector: 'app-preview',
@@ -10,5 +13,7 @@ import { generatePreview, PromptElement } from '../../domain/prompt-element';
 export class Preview {
     elements = input.required<PromptElement[]>();
 
-    protected preview = computed(() => generatePreview(this.elements()));
+    protected previewElements = computed(() =>
+        generatePreviewElements(this.elements()),
+    );
 }

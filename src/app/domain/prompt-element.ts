@@ -17,8 +17,27 @@ const computedPreviews: { [key in ComputedValue]: string } = {
     [ComputedValue.Directory]: '~/workspace/super-task',
 };
 
+export enum FormatColor {
+    Black = 'Black',
+    Red = 'Red',
+    Green = 'Green',
+    Yellow = 'Yellow',
+    Blue = 'Blue',
+    Magenta = 'Magenta',
+    Cyan = 'Cyan',
+    White = 'White',
+}
+
+export enum FormatIntensity {
+    Dim = 'Dim',
+    Bright = 'Bright',
+}
+
 export interface FormatData {
-    param: boolean;
+    foreground: {
+        color: FormatColor;
+        intensity: FormatIntensity;
+    };
 }
 
 export interface BaseElement {
@@ -57,7 +76,15 @@ export function create(type: ElementType): PromptElement {
         case ElementType.Computed:
             return { type, value: ComputedValue.User };
         case ElementType.Format:
-            return { type, format: { param: false } };
+            return {
+                type,
+                format: {
+                    foreground: {
+                        intensity: FormatIntensity.Dim,
+                        color: FormatColor.White,
+                    },
+                },
+            };
         case ElementType.Reset:
         default:
             return { type };
@@ -74,6 +101,43 @@ export const isText = isElemByType<TextElement>(ElementType.Text);
 export const isComputed = isElemByType<ComputedElement>(ElementType.Computed);
 export const isFormat = isElemByType<FormatElement>(ElementType.Format);
 export const isReset = isElemByType<ResetElement>(ElementType.Reset);
+
+interface PreviewElement {
+    text: string;
+    format?: FormatData;
+}
+
+export function generatePreviewElementText(element: PromptElement): string {
+    if (isText(element)) {
+        return element.text;
+    } else if (isComputed(element)) {
+        return computedPreviews[element.value];
+    } else {
+        return '';
+    }
+}
+
+export function generatePreviewElements(elements: PromptElement[]) {
+    let lastFormat = undefined;
+    let previewElements: PreviewElement[] = [];
+    for (const element of elements) {
+        if (isFormat(element)) {
+            lastFormat = element.format;
+        } else if (isReset(element)) {
+            lastFormat = undefined;
+        } else {
+            let newElem: PreviewElement = {
+                text: generatePreviewElementText(element),
+            };
+            if (lastFormat !== undefined) {
+                // Make sure we get a copy so nothing get's corrupted on the way
+                newElem.format = JSON.parse(JSON.stringify(lastFormat));
+            }
+            previewElements.push(newElem);
+        }
+    }
+    return previewElements;
+}
 
 export function generatePreview(elements: PromptElement[]): string {
     return elements

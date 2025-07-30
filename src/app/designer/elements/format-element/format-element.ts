@@ -1,7 +1,9 @@
 import { Component, input, output, signal } from '@angular/core';
 import {
     ElementType,
+    FormatColor,
     FormatData,
+    FormatIntensity,
     PromptElement,
 } from '../../../domain/prompt-element';
 import { Popup } from '../../../popup/popup/popup';
@@ -19,16 +21,37 @@ export class FormatElement {
 
     protected open = signal<boolean>(false);
 
+    protected intensities = Object.values<FormatIntensity>(FormatIntensity);
+    protected colors = Object.values<FormatColor>(FormatColor);
+
     toggleForm() {
         this.open.update(() => !this.open());
     }
 
-    updateParam(param: boolean) {
+    updateFGIntensity(intensity: FormatIntensity) {
+        let fmt = this.format();
         this.update.emit({
             type: ElementType.Format,
             format: {
-                ...this.format(),
-                param,
+                ...fmt,
+                foreground: {
+                    ...fmt.foreground,
+                    intensity,
+                },
+            },
+        });
+    }
+
+    updateFGColor(color: FormatColor) {
+        let fmt = this.format();
+        this.update.emit({
+            type: ElementType.Format,
+            format: {
+                ...fmt,
+                foreground: {
+                    ...fmt.foreground,
+                    color,
+                },
             },
         });
     }

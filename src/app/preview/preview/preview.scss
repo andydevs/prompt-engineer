@@ -1,4 +1,55 @@
 .preview-container {
     background-color: black;
+    padding: 14pt;
     color: rgb(186, 186, 186);
+}
+
+.fg-dim-black {
+    color: rgb(1, 1, 1);
+}
+.fg-dim-red {
+    color: rgb(222, 56, 43);
+}
+.fg-dim-green {
+    color: rgb(57, 181, 74);
+}
+.fg-dim-yellow {
+    color: rgb(255, 199, 6);
+}
+.fg-dim-blue {
+    color: rgb(0, 111, 184);
+}
+.fg-dim-magenta {
+    color: rgb(118, 38, 113);
+}
+.fg-dim-cyan {
+    color: rgb(44, 181, 233);
+}
+.fg-dim-white {
+    color: rgb(204, 204, 204);
+}
+
+.fg-bright-black {
+    color: rgb(128, 128, 128);
+}
+.fg-bright-red {
+    color: rgb(255, 0, 0);
+}
+.fg-bright-green {
+    color: rgb(0, 255, 0);
+}
+.fg-bright-yellow {
+    color: rgb(255, 255, 0);
+}
+.fg-bright-blue {
+    color: rgb(0, 0, 255);
+}
+.fg-bright-magenta {
+    color: rgb(255, 0, 255);
+}
+.fg-bright-cyan {
+    color: rgb(0, 255, 255);
+}
+.fg-bright-white {
+    color: rgb(255, 255, 255);
 }

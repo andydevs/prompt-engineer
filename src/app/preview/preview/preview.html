@@ -1,8 +1,19 @@
 <div>
     <h2>Prompt Preview</h2>
-    <pre class="preview-container">
+    <div class="preview-container">
         <code>
-            {{ preview() }}
+            @for (element of previewElements(); track $index) {
+                @if (element.format !== undefined) {
+                    <span
+                        class="preview-element fg-{{
+                            element.format.foreground.intensity.toLowerCase()
+                        }}-{{ element.format.foreground.color.toLowerCase() }}"
+                        >{{ element.text }}</span
+                    >
+                } @else {
+                    <span>{{ element.text }}</span>
+                }
+            }
         </code>
-    </pre>
+    </div>
 </div>
