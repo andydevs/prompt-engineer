@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Popup } from '../../popup/popup/popup';
-import { ElementType } from '../prompt-element';
+import { ElementType } from '../../domain/prompt-element';
 import { output } from '@angular/core';
 
 @Component({

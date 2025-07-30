@@ -1,5 +1,9 @@
 import { Component, input, output, signal } from '@angular/core';
-import { ElementType, FormatData, PromptElement } from '../../prompt-element';
+import {
+    ElementType,
+    FormatData,
+    PromptElement,
+} from '../../../domain/prompt-element';
 import { Popup } from '../../../popup/popup/popup';
 import { FormsModule } from '@angular/forms';
 
