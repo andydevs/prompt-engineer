@@ -6,6 +6,12 @@
             "options": {
                 "parser": "angular"
             }
+        },
+        {
+            "files": "*.yml",
+            "options": {
+                "tabWidth": 2
+            }
         }
     ]
 }
