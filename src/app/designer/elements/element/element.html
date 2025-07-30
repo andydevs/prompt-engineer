@@ -7,8 +7,21 @@
                 (update)="updateSelf($event)"
                 [text]="elem.text"/>
         }
-        <!-- Should'nt happen -->
+        @else if (isComputed(elem)) {
+            <app-designer-computed-element
+                (update)="updateSelf($event)"
+                [value]="elem.value"/>
+        }
+        @else if (isFormat(elem)) {
+            <app-designer-format-element
+                (update)="updateSelf($event)"
+                [format]="elem.format"/>
+        }
+        @else if (isReset(elem)) {
+            <app-designer-reset-element/>
+        }
         @else {
+            <!-- Should'nt happen -->
             <span class="designer-element-unknown">{{ element().type }}</span>
         }
     </span>

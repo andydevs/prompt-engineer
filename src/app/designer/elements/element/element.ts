@@ -1,10 +1,13 @@
 import { Component, input, output } from '@angular/core';
 import { isComputed, isFormat, isReset, isText, PromptElement } from '../../prompt-element';
 import { TextElement } from '../text-element/text-element';
+import { ComputedElement } from '../computed-element/computed-element';
+import { FormatElement } from '../format-element/format-element';
+import { ResetElement } from '../reset-element/reset-element';
 
 @Component({
   selector: 'app-designer-element',
-  imports: [TextElement],
+  imports: [TextElement, ComputedElement, FormatElement, ResetElement],
   templateUrl: './element.html',
   styleUrl: './element.scss'
 })

@@ -11,26 +11,30 @@ export enum ComputedValue {
     Directory = 'Directory'
 }
 
+export interface FormatData {
+    param: boolean
+}
+
 export interface BaseElement {
     type: ElementType
 }
 
-export interface TextElement {
+export interface TextElement extends BaseElement {
     type: ElementType.Text,
     text: string
 }
 
-export interface ComputedElement {
+export interface ComputedElement extends BaseElement {
     type: ElementType.Computed,
     value: ComputedValue
 }
 
-export interface FormatElement {
-    type: ElementType.Format
-    param: boolean
+export interface FormatElement extends BaseElement {
+    type: ElementType.Format,
+    format: FormatData
 }
 
-export interface ResetElement {
+export interface ResetElement extends BaseElement {
     type: ElementType.Reset
 }
 
@@ -46,7 +50,7 @@ export function create(type:ElementType): PromptElement {
         case ElementType.Computed:
             return { type, value: ComputedValue.User };
         case ElementType.Format:
-            return { type, param: false };
+            return { type, format: { param: false } };
         case ElementType.Reset:
         default:
             return { type }
@@ -58,6 +62,6 @@ function isElemByType<T extends PromptElement>(typ: ElementType): ((elem: Prompt
 }
 
 export const isText = isElemByType<TextElement>(ElementType.Text)
-export const isComputed = isElemByType<ComputedElement>(ElementType.Text)
-export const isFormat = isElemByType<FormatElement>(ElementType.Text)
+export const isComputed = isElemByType<ComputedElement>(ElementType.Computed)
+export const isFormat = isElemByType<FormatElement>(ElementType.Format)
 export const isReset = isElemByType<ResetElement>(ElementType.Reset)

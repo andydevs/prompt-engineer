@@ -1,0 +1,7 @@
+<span class="designer-computed-element-container">
+    <select class="designer-computed-element-selector" [ngModel]="value()" (ngModelChange)="updateValue($event)">
+        @for (type of types; track type) {
+            <option value="{{ type }}">{{ type }}</option>
+        }
+    </select>
+</span>
