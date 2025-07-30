@@ -1,0 +1,16 @@
+.popup-overlay {
+    position: relative;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.popup-element {
+    position: absolute;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    top: 125%;
+    left: 0%;
+    background-color: #eee;
+}

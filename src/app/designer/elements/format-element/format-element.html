@@ -1,3 +1,17 @@
 <span class="designer-format-element-container">
-    <button class="designer-format-element-value">FMT</button>
+    <app-popup [open]="open()">
+        <div class="designer-format-element-config">
+            <div>
+                Param:
+                <input
+                    type="checkbox"
+                    [ngModel]="format().param"
+                    (ngModelChange)="updateParam($event)"
+                />
+            </div>
+        </div>
+    </app-popup>
+    <button (click)="toggleForm()" class="designer-format-element-value">
+        FMT
+    </button>
 </span>

@@ -1,14 +1,14 @@
 <span class="add-element-container">
-    @if (open()) {
+    <app-popup [open]="open()">
         <ul class="add-list">
             @for (type of types; track $index) {
-                <li>
+                <li class="add-list-element">
                     <button (click)="selectElement(type)">{{ type }}</button>
                 </li>
             }
         </ul>
-    }
-    @else {
-        <button class="add-button" (click)="openMenu()">&plus;</button>
-    }
+    </app-popup>
+    <button [disabled]="open()" class="add-button" (click)="openMenu()">
+        &plus;
+    </button>
 </span>

@@ -1,0 +1,17 @@
+.add-element-container {
+    display: inline;
+    position: static;
+}
+
+.add-list {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: stretch;
+    margin: 0;
+    padding: 2pt;
+    list-style: none;
+
+    > li > button {
+        width: 100%;
+    }
+}
