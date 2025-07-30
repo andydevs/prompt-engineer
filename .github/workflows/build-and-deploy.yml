@@ -18,7 +18,7 @@ jobs:
 
       # Build using angular
       - name: Build using Angular
-        run: ng build --output-path dist --base-href /prompt-engineer/
+        run: npx ng build --output-path dist --base-href /prompt-engineer/
 
       # Create artifact
       - name: Upload GitHub Pages artifact
@@ -40,5 +40,5 @@ jobs:
       - name: Push to GitHub Pages branch
         uses: ftnext/action-push-ghpages@v1.0.0
         with:
-          build_dir: public
+          build_dir: dist
           github_token: ${{ secrets.GITHUB_TOKEN }}
