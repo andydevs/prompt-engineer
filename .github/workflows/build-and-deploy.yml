@@ -42,5 +42,5 @@ jobs:
       - name: Push to GitHub Pages branch
         uses: ftnext/action-push-ghpages@v1.0.0
         with:
-          build_dir: dist
+          build_dir: dist/browser
           github_token: ${{ secrets.GITHUB_TOKEN }}
