@@ -24,7 +24,7 @@ jobs:
 
       # Build using angular
       - name: Build using Angular
-        run: npx ng build
+        run: npx ng build --base-url /prompt-engineer/
 
       # Deploy to Github Pages
       - name: Setup Pages
